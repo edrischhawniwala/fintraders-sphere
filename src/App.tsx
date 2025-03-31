@@ -15,6 +15,8 @@ import Charts from "./pages/Charts";
 import Portfolio from "./pages/Portfolio";
 import Education from "./pages/Education";
 import Settings from "./pages/Settings";
+import Groups from "./pages/Groups";
+import GroupDetail from "./pages/GroupDetail";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +38,8 @@ const App = () => (
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/education" element={<Education />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/groups" element={<Groups />} />
+          <Route path="/groups/:groupId" element={<GroupDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

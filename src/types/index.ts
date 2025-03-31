@@ -59,3 +59,30 @@ export interface Group {
   price?: number;
   createdAt: string;
 }
+
+export interface GroupMember {
+  id: string;
+  groupId: string;
+  userId: string;
+  user?: User;
+  role: 'member' | 'moderator' | 'admin';
+  joinedAt: string;
+}
+
+export interface GroupPost extends Post {
+  groupId: string;
+}
+
+export interface StreamSession {
+  id: string;
+  groupId: string;
+  hostId: string;
+  host?: User;
+  title: string;
+  type: 'video' | 'audio' | 'screen';
+  status: 'scheduled' | 'live' | 'ended';
+  scheduledFor?: string;
+  startedAt?: string;
+  endedAt?: string;
+  participantCount: number;
+}
