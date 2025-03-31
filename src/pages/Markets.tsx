@@ -9,8 +9,33 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Search, Star, TrendingUp, TrendingDown, ChevronRight, ArrowUpRight, ArrowDownRight } from "lucide-react";
 
+// Define TypeScript interfaces for our market data
+interface BaseMarketItem {
+  id: string;
+  name: string;
+  symbol: string;
+  price: number;
+  change: number;
+  volume: string;
+  chart: any[];
+}
+
+interface MarketItemWithCap extends BaseMarketItem {
+  marketCap: string;
+}
+
+type MarketItemType = BaseMarketItem | MarketItemWithCap;
+
+interface MarketData {
+  crypto: MarketItemWithCap[];
+  forex: BaseMarketItem[];
+  stocks: MarketItemWithCap[];
+  commodities: BaseMarketItem[];
+  [key: string]: MarketItemType[];
+}
+
 // Mock market data for different asset classes
-const marketData = {
+const marketData: MarketData = {
   crypto: [
     { id: "btc", name: "Bitcoin", symbol: "BTC", price: 38245.67, change: 2.45, volume: "52.4B", marketCap: "748.2B", chart: generateChartData(2.45) },
     { id: "eth", name: "Ethereum", symbol: "ETH", price: 2567.89, change: -1.23, volume: "28.7B", marketCap: "309.5B", chart: generateChartData(-1.23) },
@@ -69,6 +94,11 @@ const marketOverview = [
   { name: "Oil (WTI)", value: "$72.46", change: -1.85, status: "down" },
   { name: "USD Index", value: "104.23", change: -0.12, status: "down" },
 ];
+
+// Function to check if an item has market cap
+function hasMarketCap(item: MarketItemType): item is MarketItemWithCap {
+  return 'marketCap' in item;
+}
 
 export default function Markets() {
   const [activeTab, setActiveTab] = useState("crypto");
@@ -206,7 +236,7 @@ export default function Markets() {
                               </div>
                             </td>
                             <td className="text-right p-4">{item.volume}</td>
-                            {activeTab !== 'forex' && activeTab !== 'commodities' && item.marketCap && (
+                            {activeTab !== 'forex' && activeTab !== 'commodities' && hasMarketCap(item) && (
                               <td className="text-right p-4">{item.marketCap}</td>
                             )}
                             <td className="p-4">
