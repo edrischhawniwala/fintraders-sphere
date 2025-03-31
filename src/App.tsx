@@ -7,6 +7,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import Friends from "./pages/Friends";
+import Messages from "./pages/Messages";
+import Notifications from "./pages/Notifications";
+import Markets from "./pages/Markets";
+import Charts from "./pages/Charts";
+import Portfolio from "./pages/Portfolio";
+import Education from "./pages/Education";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -20,15 +28,14 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:userId" element={<Profile />} />
-          {/* These routes would be implemented in future iterations */}
-          <Route path="/friends" element={<Index />} />
-          <Route path="/messages" element={<Index />} />
-          <Route path="/notifications" element={<Index />} />
-          <Route path="/markets" element={<Index />} />
-          <Route path="/charts" element={<Index />} />
-          <Route path="/portfolio" element={<Index />} />
-          <Route path="/education" element={<Index />} />
-          <Route path="/settings" element={<Index />} />
+          <Route path="/friends" element={<Friends />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/markets" element={<Markets />} />
+          <Route path="/charts" element={<Charts />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
