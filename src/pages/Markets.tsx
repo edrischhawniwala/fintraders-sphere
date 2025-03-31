@@ -206,7 +206,7 @@ export default function Markets() {
                               </div>
                             </td>
                             <td className="text-right p-4">{item.volume}</td>
-                            {activeTab !== 'forex' && activeTab !== 'commodities' && (
+                            {activeTab !== 'forex' && activeTab !== 'commodities' && item.marketCap && (
                               <td className="text-right p-4">{item.marketCap}</td>
                             )}
                             <td className="p-4">

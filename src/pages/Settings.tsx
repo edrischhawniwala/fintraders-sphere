@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
@@ -481,8 +482,8 @@ export default function Settings() {
                         {["#2563eb", "#10b981", "#8b5cf6", "#ef4444", "#f59e0b"].map((color) => (
                           <div 
                             key={color} 
-                            className="w-8 h-8 rounded-full cursor-pointer ring-2 ring-offset-2 ring-offset-background"
-                            style={{ backgroundColor: color, ringColor: color === "#2563eb" ? color : "transparent" }}
+                            className={`w-8 h-8 rounded-full cursor-pointer ring-2 ring-offset-2 ring-offset-background ${color === "#2563eb" ? `ring-[${color}]` : "ring-transparent"}`}
+                            style={{ backgroundColor: color }}
                           />
                         ))}
                       </div>
